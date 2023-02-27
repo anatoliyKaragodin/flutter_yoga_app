@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_yoga_app/pages/home_pages/calendar.dart';
 import 'package:flutter_yoga_app/pages/home_pages/profile.dart';
-import 'package:flutter_yoga_app/pages/home_pages/yoga.dart';
+import 'package:flutter_yoga_app/pages/home_pages/yoga/yoga.dart';
 
 import '../utils/dimensions_util.dart';
 
@@ -72,7 +72,7 @@ class _HomePageAppState extends State<HomePageApp> {
           /// Settings page tab
           BottomNavigationBarItem(
               label: bottomBarLabels[2],
-              icon: Icon(Icons.access_time_rounded, size: iconSize)),
+              icon: Icon(Icons.person, size: iconSize)),
         ],
       ),
     );
