@@ -25,12 +25,15 @@ class _ProfilePageState extends State<ProfilePage> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Text(
-            'Chet Manly',
-            style: TextStyle(
-                color: Colors.white,
-                fontSize: Dimensions.width10 * 2,
-                fontWeight: FontWeight.bold),
+          Padding(
+            padding: EdgeInsets.only(top: Dimensions.height10),
+            child: Text(
+              'Chet Manly',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: Dimensions.width10 * 2,
+                  fontWeight: FontWeight.bold),
+            ),
           ),
           CircleAvatar(
             radius: Dimensions.height10*6,
@@ -65,9 +68,13 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
               SizedBox(
                   width: Dimensions.width10 * 25,
-                  child: LinearProgressIndicator(
-                    backgroundColor: Colors.white70,
-                    value: 0.7,
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10)),
+                    child: LinearProgressIndicator(
+                      minHeight: Dimensions.height10*0.6,
+                      backgroundColor: Colors.white70,
+                      value: 0.7,
+                    ),
                   ))
             ],
           ),

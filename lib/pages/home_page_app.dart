@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_yoga_app/pages/home_pages/calendar.dart';
+import 'package:flutter_yoga_app/pages/home_pages/calendar/calendar.dart';
 import 'package:flutter_yoga_app/pages/home_pages/profile.dart';
 import 'package:flutter_yoga_app/pages/home_pages/yoga/yoga.dart';
 
@@ -60,14 +60,14 @@ class _HomePageAppState extends State<HomePageApp> {
           BottomNavigationBarItem(
               label: bottomBarLabels[0],
               icon: Icon(
-                Icons.access_time_rounded,
+                Icons.accessibility_new_rounded,
                 size: iconSize,
               )),
 
           /// Profile page tab
           BottomNavigationBarItem(
               label: bottomBarLabels[1],
-              icon: Icon(Icons.access_time_rounded, size: iconSize)),
+              icon: Icon(Icons.calendar_month_rounded, size: iconSize)),
 
           /// Settings page tab
           BottomNavigationBarItem(

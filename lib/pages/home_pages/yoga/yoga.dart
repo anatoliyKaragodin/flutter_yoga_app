@@ -11,6 +11,7 @@ class YogaPage extends StatefulWidget {
 
 class _YogaPageState extends State<YogaPage> {
   final List<String> difficultyLabels = ["Beginner", "Trained", "Experienced"];
+  final List<int> difficultyDurations = [15, 25, 30];
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,7 +19,7 @@ class _YogaPageState extends State<YogaPage> {
       child: ListView.builder(
           itemCount: difficultyLabels.length,
           itemBuilder: (BuildContext context, int index) {
-            return YogaWidget();
+            return YogaWidget(label: difficultyLabels[index], duration: difficultyDurations[index]);
           }),
     );
   }

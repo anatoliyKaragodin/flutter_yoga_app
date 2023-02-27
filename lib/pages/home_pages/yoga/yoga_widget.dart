@@ -3,7 +3,9 @@ import 'package:flutter_yoga_app/pages/home_pages/yoga/start_yoga_button_widget.
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 
 class YogaWidget extends StatefulWidget {
-  const YogaWidget({Key? key}) : super(key: key);
+  final String label;
+  final int duration;
+  const YogaWidget({Key? key, required this.label, required this.duration}) : super(key: key);
 
   @override
   State<YogaWidget> createState() => _YogaWidgetState();
@@ -37,29 +39,29 @@ class _YogaWidgetState extends State<YogaWidget> {
                         ),
                     child: Row(
                       children: [
-                        Text('Yoga',
+                        Text(widget.label,
                             style: TextStyle(
-                                fontSize: Dimensions.height10 * 3,
+                                fontSize: Dimensions.height10 * 2.5,
                                 fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        bottom: Dimensions.height10,
-                        ),
-                    child: Row(
-                      children: [
-                        Text(
-                          'with Emma Robertson',
-                          style: TextStyle(color: Colors.black45, fontSize: Dimensions.height10*1.3),
-                        ),
-                      ],
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: EdgeInsets.only(
+                  //       bottom: Dimensions.height10,
+                  //       ),
+                  //   child: Row(
+                  //     children: [
+                  //       Text(
+                  //         'with Emma Robertson',
+                  //         style: TextStyle(color: Colors.black45, fontSize: Dimensions.height10*1.3),
+                  //       ),
+                  //     ],
+                  //   ),
+                  // ),
                   Row(
                     children: [
-                      StartYogaButtonWidget(),
+                      StartYogaButtonWidget(duration: widget.duration),
                     ],
                   )
                 ],

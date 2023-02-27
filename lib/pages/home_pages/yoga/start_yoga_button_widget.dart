@@ -3,7 +3,8 @@ import 'package:flutter_yoga_app/utils/library.dart';
 import '../../../utils/dimensions_util.dart';
 
 class StartYogaButtonWidget extends StatefulWidget {
-  const StartYogaButtonWidget({Key? key}) : super(key: key);
+  final int duration;
+  const StartYogaButtonWidget({Key? key, required this.duration}) : super(key: key);
 
   @override
   State<StartYogaButtonWidget> createState() => _StartYogaButtonWidgetState();
@@ -28,7 +29,7 @@ class _StartYogaButtonWidgetState extends State<StartYogaButtonWidget> {
             right: Dimensions.width10/2),
             child: Icon(Icons.play_arrow_rounded),
           ),
-          Text('25 min', style: TextStyle(fontSize: Dimensions.height10*1.8, fontWeight: FontWeight.bold),)
+          Text('${widget.duration} min', style: TextStyle(fontSize: Dimensions.height10*1.8, fontWeight: FontWeight.bold),)
         ],),
       ),
     );
