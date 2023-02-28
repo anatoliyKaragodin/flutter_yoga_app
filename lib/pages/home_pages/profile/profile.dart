@@ -1,22 +1,26 @@
+import 'package:flutter_yoga_app/riverpod/riverpod.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 
-import '../../utils/dimensions_util.dart';
+import '../../../utils/dimensions_util.dart';
+import '../../../utils/my_colors.dart';
 
-class ProfilePage extends StatefulWidget {
+class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({Key? key}) : super(key: key);
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  ConsumerState<ProfilePage> createState() => _ProfilePageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
+    final level = ref.watch(userLevelProvider);
+    final exp = ref.watch(userExpProvider);
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: <Color>[
-            Colors.purpleAccent[100]!.withOpacity(0.5),
-            Colors.purpleAccent[100]!.withOpacity(0.1),
+            MyColors.mainColor!,
+            MyColors.mainColor!.withOpacity(0.05),
           ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
           // color: Colors.purpleAccent[100]?.withOpacity(0.5),
           borderRadius: BorderRadius.circular(Dimensions.height10 * 4)),
@@ -51,14 +55,14 @@ class _ProfilePageState extends State<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'LEVEL 1',
+                      'LEVEL $level',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black45),
+                          fontWeight: FontWeight.bold, color: MyColors.fontGreyColor,),
                     ),
                     Text(
-                      '700 / 1000',
+                      '$exp / 1000',
                       style: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.black45),
+                          fontWeight: FontWeight.bold, color: MyColors.fontGreyColor),
                     )
                   ],
                 ),
@@ -71,9 +75,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.all(Radius.circular(Dimensions.height10)),
                     child: LinearProgressIndicator(
+                      color: MyColors.mainColor,
                       minHeight: Dimensions.height10*0.6,
                       backgroundColor: Colors.white70,
-                      value: 0.7,
+                      value: exp/1000,
                     ),
                   ))
             ],

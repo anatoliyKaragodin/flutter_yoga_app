@@ -1,17 +1,22 @@
 import 'package:flutter_yoga_app/pages/home_pages/calendar/schedule_widget.dart';
+import 'package:flutter_yoga_app/riverpod/riverpod.dart';
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
+import 'package:flutter_yoga_app/utils/my_colors.dart';
 
-class CalendarPage extends StatefulWidget {
+class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
 
   @override
-  State<CalendarPage> createState() => _CalendarPageState();
+  ConsumerState<CalendarPage> createState() => _CalendarPageState();
 }
 
-class _CalendarPageState extends State<CalendarPage> {
+class _CalendarPageState extends ConsumerState<CalendarPage> {
+
   @override
   Widget build(BuildContext context) {
+    final exercises = ref.watch(completedWorkoutProvider);
+    final minutes = ref.watch(minutesProvider);
     return Padding(
       padding:
           EdgeInsets.only(left: Dimensions.width10*2, right: Dimensions.width10*2),
@@ -21,7 +26,7 @@ class _CalendarPageState extends State<CalendarPage> {
           TableCalendar(
             availableCalendarFormats: {CalendarFormat.week: 'week'},
             calendarStyle: CalendarStyle(
-              todayDecoration: BoxDecoration(shape: BoxShape.circle, color: Colors.purpleAccent[100]),
+              todayDecoration: BoxDecoration(shape: BoxShape.circle, color: MyColors.mainColor),
             //     markerDecoration: BoxDecoration(color: Colors.purpleAccent),
             //     selectedDecoration: BoxDecoration(
             //   color: Colors.purpleAccent
@@ -48,22 +53,28 @@ class _CalendarPageState extends State<CalendarPage> {
 
           ],),
           Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              Text('WEEKLY', style: TextStyle(
+                  color: MyColors.fontGreyColor,
+                  fontWeight: FontWeight.bold,
+                  fontSize: Dimensions.height10 * 1.6),),
+              SizedBox(height: Dimensions.height10*3,),
 
               Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'Exersices:',
+                  'Exercises:',
                   style: TextStyle(
-                      color: Colors.black54,
+                      color: MyColors.fontGreyColor,
                       fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.height10 * 1.8),
+                      fontSize: Dimensions.height10 * 1.6),
                 ),
                 Text(
-                  '0',
+                  exercises.toString(),
                   style: TextStyle(
-                      color: Colors.black54,
+                      color: MyColors.fontGreyColor,
                       fontWeight: FontWeight.bold,
                       fontSize: Dimensions.height10 * 1.8),
                 ),
@@ -78,14 +89,14 @@ class _CalendarPageState extends State<CalendarPage> {
                   Text(
                     'Time(minutes):',
                     style: TextStyle(
-                        color: Colors.black54,
+                        color: MyColors.fontGreyColor,
                         fontWeight: FontWeight.bold,
-                        fontSize: Dimensions.height10 * 1.8),
+                        fontSize: Dimensions.height10 * 1.6),
                   ),
                   Text(
-                    '0',
+                    minutes.toString(),
                     style: TextStyle(
-                        color: Colors.black54,
+                        color: MyColors.fontGreyColor,
                         fontWeight: FontWeight.bold,
                         fontSize: Dimensions.height10 * 1.8),
                   ),

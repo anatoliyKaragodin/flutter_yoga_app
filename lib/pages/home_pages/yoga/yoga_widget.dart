@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_yoga_app/pages/home_pages/yoga/start_yoga_button_widget.dart';
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
+import 'package:flutter_yoga_app/utils/my_colors.dart';
 
 class YogaWidget extends StatefulWidget {
+  final int index;
   final String label;
   final int duration;
-  const YogaWidget({Key? key, required this.label, required this.duration}) : super(key: key);
+  const YogaWidget({Key? key, required this.label, required this.duration, required this.index}) : super(key: key);
 
   @override
   State<YogaWidget> createState() => _YogaWidgetState();
@@ -20,8 +22,8 @@ class _YogaWidgetState extends State<YogaWidget> {
       child: Container(
         decoration: BoxDecoration(
             gradient: LinearGradient(colors: <Color>[
-              Colors.purpleAccent[100]!.withOpacity(0.5),
-              Colors.purpleAccent[100]!.withOpacity(0.1),
+              MyColors.mainColor!,
+              MyColors.mainColor!.withOpacity(0.1),
             ], begin: Alignment.topCenter, end: Alignment.bottomCenter),
             borderRadius: BorderRadius.circular(Dimensions.height10 * 4)),
         height: Dimensions.height10 * 20,
@@ -41,6 +43,7 @@ class _YogaWidgetState extends State<YogaWidget> {
                       children: [
                         Text(widget.label,
                             style: TextStyle(
+                              color: Colors.white,
                                 fontSize: Dimensions.height10 * 2.5,
                                 fontWeight: FontWeight.bold)),
                       ],
@@ -59,9 +62,10 @@ class _YogaWidgetState extends State<YogaWidget> {
                   //     ],
                   //   ),
                   // ),
+                  SizedBox(height: Dimensions.height10*2,),
                   Row(
                     children: [
-                      StartYogaButtonWidget(duration: widget.duration),
+                      StartYogaButtonWidget(difficulty: widget.index, duration: widget.duration),
                     ],
                   )
                 ],

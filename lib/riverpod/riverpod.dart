@@ -4,7 +4,7 @@ final exerciseNumberProvider = StateProvider<int>((ref) {
   return 0;
 });
 
-final selectedDayProvider = StateProvider<int>((ref) {
+final selectedDifficultyProvider = StateProvider<int>((ref) {
   return 0;
 });
 
@@ -16,6 +16,22 @@ final completedExerciseProvider = StateProvider<int>((ref) {
   return 0;
 });
 
+final completedWorkoutProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
 final homePageProvider = StateProvider<int>((ref) {
   return 2;
+});
+
+final userLevelProvider = StateProvider<int>((ref) {
+  return 1;
+});
+
+final userExpProvider = StateProvider<int>((ref) {
+  return 0;
+});
+
+final minutesProvider = StateProvider<int>((ref) {
+  return 0;
 });

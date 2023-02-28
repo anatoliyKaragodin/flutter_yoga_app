@@ -1,5 +1,6 @@
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
+import 'package:flutter_yoga_app/utils/my_colors.dart';
 
 class ScheduleWidget extends StatefulWidget {
   const ScheduleWidget({Key? key}) : super(key: key);
@@ -10,7 +11,7 @@ class ScheduleWidget extends StatefulWidget {
 
 class _ScheduleWidgetState extends State<ScheduleWidget> {
   final double padding = Dimensions.width10*0.65;
-  final Color color = Colors.purpleAccent.shade100.withOpacity(0.5);
+  final Color? color = MyColors.mainColor;
   @override
   Widget build(BuildContext context) {
     return Container(

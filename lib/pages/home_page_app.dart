@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_yoga_app/pages/home_pages/calendar/calendar.dart';
-import 'package:flutter_yoga_app/pages/home_pages/profile.dart';
+import 'package:flutter_yoga_app/pages/home_pages/profile/profile.dart';
 import 'package:flutter_yoga_app/pages/home_pages/yoga/yoga.dart';
+import 'package:flutter_yoga_app/utils/my_colors.dart';
 
 import '../utils/dimensions_util.dart';
 
 class HomePageApp extends StatefulWidget {
+  static const String route = 'homePageApp';
   const HomePageApp({Key? key}) : super(key: key);
 
   @override
@@ -35,24 +37,29 @@ class _HomePageAppState extends State<HomePageApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text(bottomBarLabels[_selectedBottomBarIndex])),),
+      appBar: AppBar(
+        automaticallyImplyLeading: false,
+        backgroundColor: MyColors.mainColor,
+        title: Center(child: Text(bottomBarLabels[_selectedBottomBarIndex])),
+      ),
       body: SafeArea(
         child: Column(
           children: [
             Expanded(
-                child: Center(
-                    child: _pages.elementAt(_selectedBottomBarIndex)))
+                child: Center(child: _pages.elementAt(_selectedBottomBarIndex)))
           ],
         ),
       ),
 
       /// Bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
-        selectedIconTheme:
-        IconThemeData(size: Dimensions.height10 * 3),
+
+        selectedItemColor: MyColors.whiteColor,
+        unselectedItemColor: MyColors.fontGreyColor?.withOpacity(0.5),
+        selectedIconTheme: IconThemeData(size: Dimensions.height10 * 3),
         selectedFontSize: Dimensions.height10 * 1.8,
         unselectedFontSize: Dimensions.height10 * 1.2,
-        backgroundColor: Colors.grey[200],
+        backgroundColor: MyColors.mainColor,
         currentIndex: _selectedBottomBarIndex,
         onTap: _onItemTapped,
         items: [

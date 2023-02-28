@@ -19,7 +19,7 @@ class _YogaPageState extends State<YogaPage> {
       child: ListView.builder(
           itemCount: difficultyLabels.length,
           itemBuilder: (BuildContext context, int index) {
-            return YogaWidget(label: difficultyLabels[index], duration: difficultyDurations[index]);
+            return YogaWidget(index: index, label: difficultyLabels[index], duration: difficultyDurations[index]);
           }),
     );
   }
