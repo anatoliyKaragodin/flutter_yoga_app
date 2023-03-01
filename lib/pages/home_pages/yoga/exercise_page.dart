@@ -167,7 +167,8 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     final prefs = await SharedPreferences.getInstance();
 
                     DateTime now = DateTime.now();
-                    final date = DateTime(now.year, now.month, now.day);
+                    final fullDate = DateTime(now.year, now.month, now.day).toString();
+                    final date = fullDate.substring(0, fullDate.length - 13);
 
                     ref.read(userExpProvider.notifier).update((state) => state + 100);
                     onEnd();
@@ -178,8 +179,9 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     ref
                         .read(minutesProvider.notifier)
                         .update((state) => state + Exercises().listDurations[ref.read(selectedDifficultyProvider)]~/60);
-                    await prefs.setInt('$date', ref.read(minutesProvider));
-                    int? minutes = prefs.getInt('$date');
+                    await prefs.setInt(date, ref.read(minutesProvider));
+                    int? minutes = prefs.getInt(date);
+                    print('___________DATE LOADED: $date');
                     print('___________MINUTES LOADED: $minutes');
 
                     _calculationTime();
