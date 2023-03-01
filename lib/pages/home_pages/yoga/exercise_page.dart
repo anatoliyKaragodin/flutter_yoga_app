@@ -9,7 +9,7 @@ import 'dart:math' as math;
 import '../../../data/exercises.dart';
 import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
-import '../../../widgets/exercise_description_widget.dart';
+import 'exercise_description_widget.dart';
 
 class ExercisePage extends ConsumerStatefulWidget {
   static const String route = 'exercisePage';
@@ -163,7 +163,12 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                   color: Theme.of(context).dialogBackgroundColor,
                 ),
                 child: TextButton(
-                  onPressed: () {
+                  onPressed: () async {
+                    final prefs = await SharedPreferences.getInstance();
+
+                    DateTime now = DateTime.now();
+                    final date = DateTime(now.year, now.month, now.day);
+
                     ref.read(userExpProvider.notifier).update((state) => state + 100);
                     onEnd();
 
@@ -173,6 +178,9 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     ref
                         .read(minutesProvider.notifier)
                         .update((state) => state + Exercises().listDurations[ref.read(selectedDifficultyProvider)]~/60);
+                    await prefs.setInt('$date', ref.read(minutesProvider));
+                    int? minutes = prefs.getInt('$date');
+                    print('___________MINUTES LOADED: $minutes');
 
                     _calculationTime();
                     Navigator.pushNamed(context, HomePageApp.route);

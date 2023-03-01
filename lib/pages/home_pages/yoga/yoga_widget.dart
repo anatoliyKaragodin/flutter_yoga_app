@@ -72,9 +72,15 @@ class _YogaWidgetState extends State<YogaWidget> {
               ),
             ),
             Padding(
-                padding: EdgeInsets.only(left: Dimensions.width10*13),
-                child: Image.asset('assets/images/0.png', width: Dimensions.width10*100,
-                height: Dimensions.height10*100,))
+                padding: EdgeInsets.only(
+                  right: Dimensions.width10,
+                    top: Dimensions.height10*7,
+                    left: Dimensions.width10*3),
+                child: Image.asset('assets/images/${widget.index}.png', width: Dimensions.width10*500,
+                height: Dimensions.height10*300,
+                scale: 2,
+                fit: BoxFit.fitWidth,)
+            )
           ],
         ),
       ),

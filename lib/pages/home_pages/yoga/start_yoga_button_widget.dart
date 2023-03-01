@@ -30,9 +30,9 @@ class _StartYogaButtonWidgetState extends ConsumerState<StartYogaButtonWidget> {
             .update((state) => widget.difficulty);
         ref.read(animationPausedProvider.notifier).update((state) => false);
         ref.read(exerciseNumberProvider.notifier).update((state) => 0);
-        ExercisePage(
-
-        );
+        // ExercisePage(
+        //
+        // );
         Navigator.of(context).pushNamed(ExercisePage.route);
       },
       child: Padding(

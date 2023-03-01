@@ -54,9 +54,11 @@ class _HomePageAppState extends State<HomePageApp> {
       /// Bottom navigation bar
       bottomNavigationBar: BottomNavigationBar(
 
+
         selectedItemColor: MyColors.whiteColor,
         unselectedItemColor: MyColors.fontGreyColor?.withOpacity(0.5),
-        selectedIconTheme: IconThemeData(size: Dimensions.height10 * 3),
+        // unselectedIconTheme: IconThemeData(size: Dimensions.height10 * 2),
+        // selectedIconTheme: IconThemeData(size: Dimensions.height10 * 3),
         selectedFontSize: Dimensions.height10 * 1.8,
         unselectedFontSize: Dimensions.height10 * 1.2,
         backgroundColor: MyColors.mainColor,
@@ -66,20 +68,18 @@ class _HomePageAppState extends State<HomePageApp> {
           /// Training page tab
           BottomNavigationBarItem(
               label: bottomBarLabels[0],
-              icon: Icon(
-                Icons.accessibility_new_rounded,
-                size: iconSize,
-              )),
+              icon: Image.asset('assets/icons/Yoga.png', scale: 2.5,)
+          ),
 
           /// Profile page tab
           BottomNavigationBarItem(
               label: bottomBarLabels[1],
-              icon: Icon(Icons.calendar_month_rounded, size: iconSize)),
+              icon: Image.asset('assets/icons/Calendar.png', scale: 2.5,)),
 
           /// Settings page tab
           BottomNavigationBarItem(
               label: bottomBarLabels[2],
-              icon: Icon(Icons.person, size: iconSize)),
+              icon: Image.asset('assets/icons/Profile.png', scale: 2.5,)),
         ],
       ),
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:flutter_yoga_app/pages/home_page_app.dart';
@@ -11,6 +12,11 @@ final container = ProviderContainer();
 void main() {
   /// Check initialization
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]).then((value) => runApp(ProviderScope(child: MyApp())));
+  
   runApp(const ProviderScope(child: MyApp()));
 }
 
@@ -30,7 +36,7 @@ class MyApp extends StatelessWidget {
         // '/homePage': (context) => const HomePage(),
         HomePageApp.route: (context) => const HomePageApp(),
         // '/homePageWeb': (context) => const HomePageWeb(),
-        ExercisePage.route: (context) => ExercisePage(
+        ExercisePage.route: (context) => const ExercisePage(
 
             ),
       },

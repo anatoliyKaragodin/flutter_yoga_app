@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
 
-import '../data/exercises.dart';
-import '../models/exercise_model.dart';
-import '../riverpod/riverpod.dart';
-import '../utils/dimensions_util.dart';
+import '../../../data/exercises.dart';
+import '../../../models/exercise_model.dart';
+import '../../../riverpod/riverpod.dart';
+import '../../../utils/dimensions_util.dart';
 
 
 class ExerciseDescriptionWidget extends ConsumerStatefulWidget {
