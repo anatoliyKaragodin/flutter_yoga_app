@@ -4,8 +4,9 @@ import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
 import 'package:flutter_yoga_app/utils/week_number.dart';
+import 'package:jiffy/jiffy.dart';
 
-import '../../../data/minutes_for_date.dart';
+import '../../../data/minutes_per_date.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
   const CalendarPage({Key? key}) : super(key: key);
@@ -17,16 +18,12 @@ class CalendarPage extends ConsumerStatefulWidget {
 class _CalendarPageState extends ConsumerState<CalendarPage> {
   @override
   Widget build(BuildContext context) {
+    // final week = ref.watch(selectedWeekProvider);
     // MinutesPerDay().getDaysMinutes();
-    print('${WeekNumber().weekNumber}');
+    // print('${WeekNumber().weekNumber}');
     final exercises = ref.watch(completedWorkoutProvider);
-    final minutes = ref.watch(minutesProvider);
-    final weekMinutes = mondayMinutes +
-        tuesdayMinutes +
-        wednesdayMinutes +
-        thursdayMinutes +
-        fridayMinutes +
-        saturdayMinutes + sundayMinutes;
+    // final minutes = ref.watch(minutesProvider);
+
     return Padding(
       padding: EdgeInsets.only(
           left: Dimensions.width10 * 2, right: Dimensions.width10 * 2),
@@ -34,6 +31,24 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           TableCalendar(
+            /// on change week
+            onPageChanged: (DateTime date) {
+              mondayMinutes = 0;
+              tuesdayMinutes = 0;
+              wednesdayMinutes = 0;
+              thursdayMinutes = 0;
+              fridayMinutes = 0;
+              saturdayMinutes = 0;
+              sundayMinutes = 0;
+              // weekMinutes = 0;
+              int week = Jiffy(date).week;
+
+              ref.watch(selectedWeekProvider.notifier).update((state) => week);
+              MinutesPerDay().getDaysMinutes(week);
+              print('CHANGED WEEK: ${ref.read(selectedWeekProvider)}');
+
+            },
+            weekNumbersVisible: true,
             availableCalendarFormats: {CalendarFormat.week: 'week'},
             calendarStyle: CalendarStyle(
               todayDecoration: BoxDecoration(
@@ -46,7 +61,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             calendarFormat: CalendarFormat.week,
             startingDayOfWeek: StartingDayOfWeek.monday,
             firstDay: DateTime.utc(2023, 1, 1),
-            lastDay: DateTime.utc(2030, 3, 14),
+            lastDay: DateTime.utc(2050, 1, 1),
             focusedDay: DateTime.now(),
           ),
           Column(
@@ -112,7 +127,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                       fontSize: Dimensions.height10 * 1.6),
                 ),
                 Text(
-                  weekMinutes.toString(),
+                  '${ref.watch(minutesProvider)}',
                   style: TextStyle(
                       color: MyColors.fontGreyColor,
                       fontWeight: FontWeight.bold,

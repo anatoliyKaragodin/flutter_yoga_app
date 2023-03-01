@@ -7,7 +7,7 @@ import 'package:flutter_yoga_app/utils/my_colors.dart';
 import 'dart:math' as math;
 
 import '../../../data/exercises.dart';
-import '../../../data/minutes_for_date.dart';
+import '../../../data/minutes_per_date.dart';
 import '../../../riverpod/riverpod.dart';
 import '../../../utils/dimensions_util.dart';
 import 'exercise_description_widget.dart';
@@ -184,7 +184,7 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     int? minutes = prefs.getInt(date);
                     print('___________DATE LOADED: $date');
                     print('___________MINUTES LOADED: $minutes');
-                    MinutesPerDay().getDaysMinutes();
+                    MinutesPerDay().getDaysMinutes(ref.read(selectedWeekProvider));
 
                     _calculationTime();
                     Navigator.pushNamed(context, HomePageApp.route);

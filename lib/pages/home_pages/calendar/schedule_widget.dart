@@ -1,4 +1,4 @@
-import 'package:flutter_yoga_app/data/minutes_for_date.dart';
+import 'package:flutter_yoga_app/data/minutes_per_date.dart';
 import 'package:flutter_yoga_app/riverpod/riverpod.dart';
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
@@ -13,14 +13,17 @@ class ScheduleWidget extends ConsumerStatefulWidget {
 }
 
 class _ScheduleWidgetState extends ConsumerState<ScheduleWidget> {
+
   final double padding = Dimensions.width10 * 0.65;
   final Color? color = MyColors.mainColor;
   @override
   Widget build(BuildContext context) {
-    DateTime date = DateTime.now();
-    String day = DateFormat('EEEE').format(date);
-    print(day);
-    final minutes = ref.watch(minutesProvider);
+    final week = ref.watch(selectedWeekProvider);
+    
+    // DateTime date = DateTime.now();
+    // String day = DateFormat('EEEE').format(date);
+    // print(day);
+    // final minutes = ref.watch(minutesProvider);
     return Container(
       /// Schedule size
       height: Dimensions.height10 * 20,

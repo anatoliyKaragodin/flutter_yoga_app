@@ -1,4 +1,7 @@
 import 'package:flutter_yoga_app/utils/library.dart';
+import 'package:jiffy/jiffy.dart';
+
+import '../data/minutes_per_date.dart';
 
 final exerciseNumberProvider = StateProvider<int>((ref) {
   return 0;
@@ -33,5 +36,16 @@ final userExpProvider = StateProvider<int>((ref) {
 });
 
 final minutesProvider = StateProvider<int>((ref) {
-  return 0;
+  return tuesdayMinutes +
+      wednesdayMinutes +
+      thursdayMinutes +
+      fridayMinutes +
+      saturdayMinutes +
+      sundayMinutes;
 });
+
+final selectedWeekProvider = StateProvider<int>((ref) {
+  return Jiffy().week;
+});
+
+final mondayMinutesProvider = StateProvider<int>((ref) => 20);
