@@ -1,29 +1,44 @@
+import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:intl/intl.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../utils/week_number.dart';
 
-int mondayMinutes = 10;
-int tuesdayMinutes = 15;
-int wednesdayMinutes = 20;
-int thursdayMinutes = 30;
-int fridayMinutes = 40;
-int saturdayMinutes = 50;
-int sundayMinutes = 60;
+int mondayMinutes = 0;
+int tuesdayMinutes = 0;
+int wednesdayMinutes = 0;
+int thursdayMinutes = 0;
+int fridayMinutes = 0;
+int saturdayMinutes = 0;
+int sundayMinutes = 0;
 
-class MinutesForDay {
-
-  void getDaysMinutes() {
-    final date = '2023-03-01';
-    print(Jiffy(date).format('EEEE'));
+class MinutesPerDay {
+  void getDaysMinutes() async {
     final week = WeekNumber().weekNumber;
-    print('WEEK: $week');
-    print('MY WEEK: ${Jiffy(date).week}');
-    if (Jiffy(date).week == week) {
-      if (Jiffy(date).format('EEEE') == 'Wednesday') {
-        wednesdayMinutes = 60;
-        print(wednesdayMinutes);
-        print('got it!');
+    final prefs = await SharedPreferences.getInstance();
+    var keys = prefs.getKeys();
+    for (var data in keys) {
+      if (data.startsWith('20')) {
+        int minutes = prefs.getInt(data) ?? 0;
+        if (Jiffy(data).week == week) {
+          if (Jiffy(data).format('EEEE') == 'Monday') {
+            mondayMinutes = minutes;
+            print(mondayMinutes);
+            print('got it!');
+          } else if (Jiffy(data).format('EEEE') == 'Tuesday') {
+            tuesdayMinutes = minutes;
+          } else if (Jiffy(data).format('EEEE') == 'Wednesday') {
+            wednesdayMinutes = minutes;
+          } else if (Jiffy(data).format('EEEE') == 'Thursday') {
+            thursdayMinutes = minutes;
+          } else if (Jiffy(data).format('EEEE') == 'Friday') {
+            fridayMinutes = minutes;
+          } else if (Jiffy(data).format('EEEE') == 'Saturday') {
+            saturdayMinutes = minutes;
+          } else if (Jiffy(data).format('EEEE') == 'Sunday') {
+            sundayMinutes = minutes;
+          }
+        }
       }
     }
   }

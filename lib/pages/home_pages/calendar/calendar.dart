@@ -17,7 +17,7 @@ class CalendarPage extends ConsumerStatefulWidget {
 class _CalendarPageState extends ConsumerState<CalendarPage> {
   @override
   Widget build(BuildContext context) {
-    MinutesForDay().getDaysMinutes();
+    // MinutesPerDay().getDaysMinutes();
     print('${WeekNumber().weekNumber}');
     final exercises = ref.watch(completedWorkoutProvider);
     final minutes = ref.watch(minutesProvider);

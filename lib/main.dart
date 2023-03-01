@@ -7,11 +7,14 @@ import 'package:flutter_yoga_app/pages/home_pages/yoga/exercise_page.dart';
 
 import 'package:flutter_yoga_app/utils/library.dart';
 
+import 'data/minutes_for_date.dart';
+
 final container = ProviderContainer();
 
 void main() {
   /// Check initialization
   WidgetsFlutterBinding.ensureInitialized();
+  MinutesPerDay().getDaysMinutes();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
