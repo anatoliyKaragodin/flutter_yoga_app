@@ -52,51 +52,53 @@ class _HomePageAppState extends State<HomePageApp> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        backgroundColor: MyColors.mainColor,
-        title: Center(child: Text(bottomBarLabels[_selectedBottomBarIndex])),
-      ),
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-                child: Center(child: _pages.elementAt(_selectedBottomBarIndex)))
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: MyColors.mainColor,
+          title: Center(child: Text(bottomBarLabels[_selectedBottomBarIndex])),
+        ),
+        body: SafeArea(
+          child: Column(
+            children: [
+              Expanded(
+                  child: Center(child: _pages.elementAt(_selectedBottomBarIndex)))
+            ],
+          ),
+        ),
+
+        /// Bottom navigation bar
+        bottomNavigationBar: BottomNavigationBar(
+
+
+          selectedItemColor: MyColors.whiteColor,
+          unselectedItemColor: MyColors.fontGreyColor?.withOpacity(0.5),
+          // unselectedIconTheme: IconThemeData(size: Dimensions.height10 * 2),
+          // selectedIconTheme: IconThemeData(size: Dimensions.height10 * 3),
+          selectedFontSize: Dimensions.height10 * 1.8,
+          unselectedFontSize: Dimensions.height10 * 1.2,
+          backgroundColor: MyColors.mainColor,
+          currentIndex: _selectedBottomBarIndex,
+          onTap: _onItemTapped,
+          items: [
+            /// Training page tab
+            BottomNavigationBarItem(
+                label: bottomBarLabels[0],
+                icon: Image.asset('assets/icons/Yoga.png', scale: 2.5,)
+            ),
+
+            /// Profile page tab
+            BottomNavigationBarItem(
+                label: bottomBarLabels[1],
+                icon: Image.asset('assets/icons/Calendar.png', scale: 2.5,)),
+
+            /// Settings page tab
+            BottomNavigationBarItem(
+                label: bottomBarLabels[2],
+                icon: Image.asset('assets/icons/Profile.png', scale: 2.5,)),
           ],
         ),
-      ),
-
-      /// Bottom navigation bar
-      bottomNavigationBar: BottomNavigationBar(
-
-
-        selectedItemColor: MyColors.whiteColor,
-        unselectedItemColor: MyColors.fontGreyColor?.withOpacity(0.5),
-        // unselectedIconTheme: IconThemeData(size: Dimensions.height10 * 2),
-        // selectedIconTheme: IconThemeData(size: Dimensions.height10 * 3),
-        selectedFontSize: Dimensions.height10 * 1.8,
-        unselectedFontSize: Dimensions.height10 * 1.2,
-        backgroundColor: MyColors.mainColor,
-        currentIndex: _selectedBottomBarIndex,
-        onTap: _onItemTapped,
-        items: [
-          /// Training page tab
-          BottomNavigationBarItem(
-              label: bottomBarLabels[0],
-              icon: Image.asset('assets/icons/Yoga.png', scale: 2.5,)
-          ),
-
-          /// Profile page tab
-          BottomNavigationBarItem(
-              label: bottomBarLabels[1],
-              icon: Image.asset('assets/icons/Calendar.png', scale: 2.5,)),
-
-          /// Settings page tab
-          BottomNavigationBarItem(
-              label: bottomBarLabels[2],
-              icon: Image.asset('assets/icons/Profile.png', scale: 2.5,)),
-        ],
       ),
     );
   }

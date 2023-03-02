@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_yoga_app/data/user_experience.dart';
 import 'package:flutter_yoga_app/pages/home_page_app.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
@@ -174,7 +175,8 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     final fullDate = DateTime(now.year, now.month, now.day).toString();
                     final date = fullDate.substring(0, fullDate.length - 13);
 
-                    ref.read(userExpProvider.notifier).update((state) => state + 100);
+                    userExperience += 100;
+                    
                     onEnd();
 
 
@@ -194,6 +196,7 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     MinutesPerDay().getDaysMinutes(ref.read(selectedWeekProvider));
 
                     _calculationTime();
+                    UserExperience().saveExp(userExperience);
                     Navigator.pushNamed(context, HomePageApp.route);
                   },
                   child: Text(

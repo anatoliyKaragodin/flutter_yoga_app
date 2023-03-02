@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_yoga_app/data/user_experience.dart';
 
 import 'package:flutter_yoga_app/pages/home_page_app.dart';
 import 'package:flutter_yoga_app/pages/home_pages/yoga/exercise_page.dart';
@@ -13,11 +14,13 @@ import 'data/minutes_per_date.dart';
 
 final container = ProviderContainer();
 
-void main() {
+void main() async {
   /// Check initialization
   WidgetsFlutterBinding.ensureInitialized();
   // MinutesPerDay().getDaysMinutes(Jiffy().week);
   // weekWorkout = 10;
+  int experience = await UserExperience().loadExp();
+  userExperience = experience;
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,

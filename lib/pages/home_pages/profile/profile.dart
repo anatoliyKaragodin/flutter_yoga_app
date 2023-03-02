@@ -1,3 +1,4 @@
+import 'package:flutter_yoga_app/data/user_experience.dart';
 import 'package:flutter_yoga_app/riverpod/riverpod.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 
@@ -14,8 +15,9 @@ class ProfilePage extends ConsumerStatefulWidget {
 class _ProfilePageState extends ConsumerState<ProfilePage> {
   @override
   Widget build(BuildContext context) {
-    final level = ref.watch(userLevelProvider);
-    final exp = ref.watch(userExpProvider);
+    // final level = ref.watch(userLevelProvider);
+    final exp = userExperience;
+    // ref.watch(userExpProvider);
     return Container(
       decoration: BoxDecoration(
           gradient: LinearGradient(colors: <Color>[
@@ -32,7 +34,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           Padding(
             padding: EdgeInsets.only(top: Dimensions.height10),
             child: Text(
-              'Chet Manly',
+              'My profile',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: Dimensions.width10 * 2,
@@ -44,7 +46,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
             backgroundColor: Colors.white70,
             child: CircleAvatar(
               radius: Dimensions.height10*5.5,
-              backgroundImage: AssetImage('assets/images/Avatar.jpg'),
+              backgroundImage: AssetImage('assets/icons/Profile.png'),
             ),
           ),
           Column(
@@ -55,12 +57,12 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'LEVEL $level',
+                      'LEVEL ${(exp~/1000)+1}',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: MyColors.fontGreyColor,),
                     ),
                     Text(
-                      '$exp / 1000',
+                      '${(exp % 1000)} / 1000',
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: MyColors.fontGreyColor),
                     )
@@ -78,7 +80,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       color: MyColors.mainColor,
                       minHeight: Dimensions.height10*0.6,
                       backgroundColor: Colors.white70,
-                      value: exp/1000,
+                      value: (exp%1000)/1000,
                     ),
                   ))
             ],

@@ -34,7 +34,7 @@ class Exercises {
     exercisesList1,
     exercisesList2,
   ];
-  List<int> listDurations = [60, 15, 18];
+  List<int> listDurations = [900, 1500, 1800];
 }
 
 class AllExercises {
