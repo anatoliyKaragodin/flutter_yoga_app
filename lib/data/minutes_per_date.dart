@@ -14,6 +14,7 @@ int fridayMinutes = 0;
 int saturdayMinutes = 0;
 int sundayMinutes = 0;
 int weekMinutes = 0;
+int weekWorkout = 0;
 
 class MinutesPerDay {
   void getDaysMinutes(int week) async {
@@ -31,7 +32,7 @@ class MinutesPerDay {
             //     .read(mondayMinutesProvider.notifier)
             //     .update((state) => minutes);
             mondayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += mondayMinutes;
             print(mondayMinutes);
             print('got it!');
           } else if (Jiffy(data).format('EEEE') == 'Tuesday') {
@@ -39,13 +40,13 @@ class MinutesPerDay {
             //     .read(tuesdayMinutesProvider.notifier)
             //     .update((state) => minutes);
             tuesdayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += tuesdayMinutes;
           } else if (Jiffy(data).format('EEEE') == 'Wednesday') {
             // container
             //     .read(wednesdayMinutesProvider.notifier)
             //     .update((state) => minutes);
             wednesdayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += wednesdayMinutes;
             print(wednesdayMinutes);
             print('got it!');
           } else if (Jiffy(data).format('EEEE') == 'Thursday') {
@@ -53,7 +54,7 @@ class MinutesPerDay {
             //     .read(thursdayMinutesProvider.notifier)
             //     .update((state) => minutes);
             thursdayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += thursdayMinutes;
             print(thursdayMinutes);
             print('got it!');
           } else if (Jiffy(data).format('EEEE') == 'Friday') {
@@ -61,19 +62,19 @@ class MinutesPerDay {
             //     .read(fridayMinutesProvider.notifier)
             //     .update((state) => minutes);
             fridayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += fridayMinutes;
           } else if (Jiffy(data).format('EEEE') == 'Saturday') {
             // container
             //     .read(saturdayMinutesProvider.notifier)
             //     .update((state) => minutes);
             saturdayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += saturdayMinutes;
           } else if (Jiffy(data).format('EEEE') == 'Sunday') {
             // container
             //     .read(sundayMinutesProvider.notifier)
             //     .update((state) => minutes);
             sundayMinutes = minutes;
-            weekMinutes += minutes;
+            weekMinutes += sundayMinutes;
           }
 
         }

@@ -7,6 +7,7 @@ import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../../../data/exercises_per_week.dart';
 import '../../../data/minutes_per_date.dart';
 
 class CalendarPage extends ConsumerStatefulWidget {
@@ -50,10 +51,12 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               saturdayMinutes = 0;
               sundayMinutes = 0;
               weekMinutes = 0;
+              weekWorkout = 0;
               int week = Jiffy(date).week;
 
               ref.watch(selectedWeekProvider.notifier).update((state) => week);
               MinutesPerDay().getDaysMinutes(week);
+              ExercisesPerWeek().getExercisesPerWeek(week);
               // MinutesPerWeek().getWeekMinutes();
               print('CHANGED WEEK: ${ref.read(selectedWeekProvider)}');
             },
@@ -93,19 +96,11 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             ],
           ),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(
-              'WEEKLY',
-              style: TextStyle(
-                  color: MyColors.fontGreyColor,
-                  fontWeight: FontWeight.bold,
-                  fontSize: Dimensions.height10 * 1.6),
-            ),
+
             SizedBox(
               height: Dimensions.height10 * 3,
             ),
-            SizedBox(
-              height: Dimensions.height10,
-            ),
+
             ExercisesAndTimeWidget(),
           ]),
         ],

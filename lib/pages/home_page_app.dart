@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_yoga_app/data/exercises_per_week.dart';
 import 'package:flutter_yoga_app/pages/home_pages/calendar/calendar.dart';
 import 'package:flutter_yoga_app/pages/home_pages/profile/profile.dart';
 import 'package:flutter_yoga_app/pages/home_pages/yoga/yoga.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
+import 'package:jiffy/jiffy.dart';
 
+import '../data/minutes_per_date.dart';
 import '../utils/dimensions_util.dart';
 
 class HomePageApp extends StatefulWidget {
@@ -29,6 +32,19 @@ class _HomePageAppState extends State<HomePageApp> {
   final double iconSize = Dimensions.height10 * 3;
 
   void _onItemTapped(int index) {
+    if(index == 1) {
+      mondayMinutes = 0;
+      tuesdayMinutes = 0;
+      wednesdayMinutes = 0;
+      thursdayMinutes = 0;
+      fridayMinutes = 0;
+      saturdayMinutes = 0;
+      sundayMinutes = 0;
+      weekMinutes = 0;
+      weekWorkout  = 0;
+      MinutesPerDay().getDaysMinutes(Jiffy().week);
+      ExercisesPerWeek().getExercisesPerWeek(Jiffy().week);
+    }
     setState(() {
       _selectedBottomBarIndex = index;
     });

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter_yoga_app/pages/home_page_app.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
+import 'package:jiffy/jiffy.dart';
 
 import 'dart:math' as math;
 
@@ -166,6 +167,8 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                 child: TextButton(
                   onPressed: () async {
                     final prefs = await SharedPreferences.getInstance();
+                    weekWorkout += 1;
+                    weekMinutes += (Exercises().listDurations[ref.read(selectedDifficultyProvider)]~/60);
 
                     DateTime now = DateTime.now();
                     final fullDate = DateTime(now.year, now.month, now.day).toString();
@@ -174,16 +177,20 @@ class _ExercisePageState extends ConsumerState<ExercisePage> {
                     ref.read(userExpProvider.notifier).update((state) => state + 100);
                     onEnd();
 
-                    ref
-                        .read(completedWorkoutProvider.notifier)
-                        .update((state) => state + 1);
-                    ref
-                        .read(minutesProvider.notifier)
-                        .update((state) => state + Exercises().listDurations[ref.read(selectedDifficultyProvider)]~/60);
-                    await prefs.setInt(date, ref.read(minutesProvider));
-                    int? minutes = prefs.getInt(date);
+
+                    // ref
+                    //     .read(completedWorkoutProvider.notifier)
+                    //     .update((state) => state + 1);
+                    // ref
+                    //     .read(minutesProvider.notifier)
+                    //     .update((state) => state + Exercises().listDurations[ref.read(selectedDifficultyProvider)]~/60);
+                    await prefs.setInt(date, weekMinutes);
+                    // weekMinutes = prefs.getInt(date) ?? 0;
+                    await prefs.setInt('week${Jiffy().week}', weekWorkout);
+                    // weekWorkout = prefs.getInt(key) ?? 0;
+                    // await prefs.setInt('week${Jiffy(date).week}', ref.read(minutesProvider));
                     print('___________DATE LOADED: $date');
-                    print('___________MINUTES LOADED: $minutes');
+                    print('___________MINUTES LOADED: $weekMinutes');
                     MinutesPerDay().getDaysMinutes(ref.read(selectedWeekProvider));
 
                     _calculationTime();

@@ -20,9 +20,18 @@ class _ExercisesAndTimeWidgetState extends ConsumerState<ExercisesAndTimeWidget>
     final weekExercises = ref.watch(completedWorkoutProvider);
     return Column(
       children: [
+        Text(
+          'WEEKLY',
+          style: TextStyle(
+              color: MyColors.fontGreyColor,
+              fontWeight: FontWeight.bold,
+              fontSize: Dimensions.height10 * 1.6),
+        ),
+        SizedBox(height: Dimensions.height10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
+
             Text(
               'Exercises:',
               style: TextStyle(
@@ -31,7 +40,7 @@ class _ExercisesAndTimeWidgetState extends ConsumerState<ExercisesAndTimeWidget>
                   fontSize: Dimensions.height10 * 1.6),
             ),
             Text(
-              '$weekExercises',
+              '$weekWorkout',
               style: TextStyle(
                   color: MyColors.fontGreyColor,
                   fontWeight: FontWeight.bold,
@@ -39,6 +48,7 @@ class _ExercisesAndTimeWidgetState extends ConsumerState<ExercisesAndTimeWidget>
             ),
           ],
         ),
+        SizedBox(height: Dimensions.height10,),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
