@@ -8,6 +8,7 @@ export 'package:get/get.dart';
 export 'package:audioplayers/audioplayers.dart';
 export 'package:vibration/vibration.dart';
 export 'package:flutter/services.dart';
+export 'package:table_calendar/table_calendar.dart';
 
 /// Webview
 export 'package:advertising_id/advertising_id.dart';
