@@ -1,9 +1,10 @@
+import 'package:flutter_yoga_app/data/minutes_per_week.dart';
+import 'package:flutter_yoga_app/pages/home_pages/calendar/exercises_and_time_widget.dart';
 import 'package:flutter_yoga_app/pages/home_pages/calendar/schedule_widget.dart';
 import 'package:flutter_yoga_app/riverpod/riverpod.dart';
 import 'package:flutter_yoga_app/utils/dimensions_util.dart';
 import 'package:flutter_yoga_app/utils/library.dart';
 import 'package:flutter_yoga_app/utils/my_colors.dart';
-import 'package:flutter_yoga_app/utils/week_number.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../data/minutes_per_date.dart';
@@ -23,6 +24,14 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
     // print('${WeekNumber().weekNumber}');
     final exercises = ref.watch(completedWorkoutProvider);
     // final minutes = ref.watch(minutesProvider);
+    // final mondayMins = ref.watch(mondayMinutesProvider);
+    // final tuesdayMins = ref.watch(mondayMinutesProvider);
+    // final wednesdayMins = ref.watch(mondayMinutesProvider);
+    // final thursdayMins = ref.watch(mondayMinutesProvider);
+    // final fridayMins = ref.watch(mondayMinutesProvider);
+    // final saturdayMins = ref.watch(mondayMinutesProvider);
+    // final sundayMins = ref.watch(mondayMinutesProvider);
+    // MinutesPerWeek().getWeekMinutes();
 
     return Padding(
       padding: EdgeInsets.only(
@@ -40,13 +49,13 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
               fridayMinutes = 0;
               saturdayMinutes = 0;
               sundayMinutes = 0;
-              // weekMinutes = 0;
+              weekMinutes = 0;
               int week = Jiffy(date).week;
 
               ref.watch(selectedWeekProvider.notifier).update((state) => week);
               MinutesPerDay().getDaysMinutes(week);
+              // MinutesPerWeek().getWeekMinutes();
               print('CHANGED WEEK: ${ref.read(selectedWeekProvider)}');
-
             },
             weekNumbersVisible: true,
             availableCalendarFormats: {CalendarFormat.week: 'week'},
@@ -94,47 +103,10 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
             SizedBox(
               height: Dimensions.height10 * 3,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Exercises:',
-                  style: TextStyle(
-                      color: MyColors.fontGreyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.height10 * 1.6),
-                ),
-                Text(
-                  exercises.toString(),
-                  style: TextStyle(
-                      color: MyColors.fontGreyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.height10 * 1.8),
-                ),
-              ],
-            ),
             SizedBox(
               height: Dimensions.height10,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  'Time(minutes):',
-                  style: TextStyle(
-                      color: MyColors.fontGreyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.height10 * 1.6),
-                ),
-                Text(
-                  '${ref.watch(minutesProvider)}',
-                  style: TextStyle(
-                      color: MyColors.fontGreyColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: Dimensions.height10 * 1.8),
-                ),
-              ],
-            ),
+            ExercisesAndTimeWidget(),
           ]),
         ],
       ),

@@ -36,16 +36,23 @@ final userExpProvider = StateProvider<int>((ref) {
 });
 
 final minutesProvider = StateProvider<int>((ref) {
-  return tuesdayMinutes +
-      wednesdayMinutes +
-      thursdayMinutes +
-      fridayMinutes +
-      saturdayMinutes +
-      sundayMinutes;
+  return 0;
 });
 
 final selectedWeekProvider = StateProvider<int>((ref) {
   return Jiffy().week;
 });
 
-final mondayMinutesProvider = StateProvider<int>((ref) => 20);
+final mondayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final tuesdayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final wednesdayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final thursdayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final fridayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final saturdayMinutesProvider = StateProvider<int>((ref) => 0);
+
+final sundayMinutesProvider = StateProvider<int>((ref) => 0);

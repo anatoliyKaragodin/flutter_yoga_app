@@ -129,7 +129,7 @@ class _ScheduleWidgetState extends ConsumerState<ScheduleWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${wednesdayMinutes}',
+                  '$wednesdayMinutes',
                   style: TextStyle(
                       color: MyColors.fontGreyColor,
                       fontWeight: FontWeight.bold),
@@ -160,7 +160,7 @@ class _ScheduleWidgetState extends ConsumerState<ScheduleWidget> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  '${thursdayMinutes}',
+                  '$thursdayMinutes',
                   style: TextStyle(
                       color: MyColors.fontGreyColor,
                       fontWeight: FontWeight.bold),
