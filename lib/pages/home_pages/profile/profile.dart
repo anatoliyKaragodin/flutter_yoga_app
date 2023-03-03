@@ -1,5 +1,5 @@
 import 'package:flutter_yoga_app/data/user_experience.dart';
-import 'package:flutter_yoga_app/riverpod/riverpod.dart';
+
 import 'package:flutter_yoga_app/utils/library.dart';
 
 import '../../../utils/dimensions_util.dart';
@@ -41,14 +41,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   fontWeight: FontWeight.bold),
             ),
           ),
-          CircleAvatar(
-            radius: Dimensions.height10*6,
-            backgroundColor: Colors.white70,
-            child: CircleAvatar(
-              radius: Dimensions.height10*5.5,
-              backgroundImage: AssetImage('assets/icons/Profile.png'),
-            ),
-          ),
+
+             Image.asset('assets/images/иконка йоги BIG.png', height: Dimensions.height10*12,),
+
           Column(
             children: [
               SizedBox(
