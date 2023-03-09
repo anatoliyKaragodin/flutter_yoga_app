@@ -19,6 +19,7 @@ class _HomePageWebState extends State<HomePageWeb> {
     InAppWebViewController? webViewController;
     InAppWebViewGroupOptions options = InAppWebViewGroupOptions(
         crossPlatform: InAppWebViewOptions(
+          userAgent: userAgent,
           useOnDownloadStart: true,
           useOnLoadResource: true,
           // allowFileAccessFromFileURLs: true,
