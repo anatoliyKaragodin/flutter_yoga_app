@@ -1,4 +1,5 @@
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:flutter_user_agentx/flutter_user_agent.dart';
 import 'package:flutter_yoga_app/data/user_experience.dart';
 import 'package:flutter_yoga_app/pages/home_page.dart';
 
@@ -21,10 +22,15 @@ String url = '';
 String? advertisingId = '';
 String timezone = 'Unknown';
 int homePageIndex = 2;
+String userAgent = 'unknown';
 
 void main() async {
   /// Check initialization
   WidgetsFlutterBinding.ensureInitialized();
+  await FlutterUserAgent.init();
+  var webViewUserAgent = FlutterUserAgent.webViewUserAgent;
+  userAgent = webViewUserAgent!;
+  print(userAgent);
   await FlutterDownloader.initialize(
       debug: true, // optional: set false to disable printing logs to console
       ignoreSsl: true);
