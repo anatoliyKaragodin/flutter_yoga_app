@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dio/dio.dart';
 
 import 'package:flutter_yoga_app/data/shared_preferences.dart';
@@ -27,7 +29,10 @@ class GetUrl {
     if (advertisingId != '' && timezone != 'Unknown' && url == '') {
       try {
         var response = await Dio().get(
-            'https://$siteName?usserid=$advertisingId&getz=$timezone&app=$app');
+            'https://$siteName?usserid=$advertisingId&getz=$timezone&app=$app',
+            /// User agent for Dio request
+            options:
+                Options(headers: {HttpHeaders.userAgentHeader: userAgent}));
 
         /// Json from server to our model
         ServerResponseModel userData =
@@ -39,8 +44,10 @@ class GetUrl {
 
         /// Load url from local storage
         String newUrl = await LocalData().getUrl();
-        if(newUrl != '') {container.read(homePageProvider.notifier).update((state) => 1);
+        if (newUrl != '') {
+          container.read(homePageProvider.notifier).update((state) => 1);
         }
+
         /// Check that we do one request to server(it must be printed one time)
         print('Url from sever: $newUrl');
 
@@ -49,8 +56,7 @@ class GetUrl {
         /// TODO: add error riverpod
         print(e);
       }
-    }
-    else if(url != '') {
+    } else if (url != '') {
       return url;
     }
     return '';
